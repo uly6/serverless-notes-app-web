@@ -7,6 +7,7 @@ import Routes from "./Routes";
 import { AppContext } from "./libs/contextLib";
 
 import "./App.css";
+import ErrorBoundary from "./containers/ErrorBoundary";
 
 function App() {
   const [isAuthenticating, setIsAuthenticating] = useState(true);
@@ -68,9 +69,13 @@ function App() {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
-          <Routes />
-        </AppContext.Provider>
+        <ErrorBoundary>
+          <AppContext.Provider
+            value={{ isAuthenticated, userHasAuthenticated }}
+          >
+            <Routes />
+          </AppContext.Provider>
+        </ErrorBoundary>
       </div>
     )
   );

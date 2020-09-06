@@ -5,8 +5,11 @@ import { Amplify } from "aws-amplify";
 import * as serviceWorker from "./serviceWorker";
 import App from "./App";
 import config from "./config";
+import { initSentry } from "./libs/errorLib";
 
 import "./index.css";
+
+initSentry();
 
 Amplify.configure({
   Auth: {
